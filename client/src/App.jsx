@@ -6,7 +6,7 @@ import {
   Navigate,
 } from 'react-router-dom'
 import { Posts, Login } from './pages'
-import { getUser } from './utils'
+import { getUser } from './helpers'
 
 const ProtectedRoute = () => {
   const user = getUser()

@@ -11,7 +11,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(morgan('dev'))
+app.use(morgan('tiny'))
 
 console.assert(
   process.env.ACCESS_TOKEN_SECRET,
@@ -72,6 +72,7 @@ app.post('/login', (req, res) => {
   }
 })
 
+// NOTE: Server-side logout removes the refreshToken
 app.post('/logout', (req, res) => {
   const { refreshToken } = req.body
 

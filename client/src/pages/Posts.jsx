@@ -1,13 +1,25 @@
+import { useEffect } from 'react'
 import useSWR from 'swr'
-import { httpClient, getUser, logoutUser } from '../utils'
+import {
+  apiClient,
+  getUser,
+  logoutUser,
+  getToken,
+  authClient,
+} from '../helpers'
 
-const fetcher = () => httpClient.get('/posts').then((r) => r.data)
+const fetcher = () => apiClient.get('/posts').then((r) => r.data)
 
 export function Posts() {
   const user = getUser() ?? {}
   const { data, error, isLoading } = useSWR('/posts', fetcher, {
     refreshInterval: 1000,
   })
+
+  useEffect(() => {
+    console.log('Sending a request the server every 1000 ms')
+    console.log('accessToken expires every 10 seconds')
+  }, [])
 
   return (
     <div>
@@ -20,13 +32,9 @@ export function Posts() {
             try {
               e.preventDefault()
 
-              const { refreshToken } = JSON.parse(
-                sessionStorage.getItem('tokens')
-              )
+              const refreshToken = getToken('refreshToken')
 
-              await httpClient.post('/logout', {
-                refreshToken,
-              })
+              await authClient.post('/logout', { refreshToken })
             } catch (error) {
               console.error(error)
             } finally {
@@ -44,9 +52,7 @@ export function Posts() {
         <p className="notice">{error.message}</p>
       ) : data?.items?.length ? (
         <>
-          <p>
-            <strong>List of post by {user.fullName}:</strong>
-          </p>
+          <h4>List of post by {user.fullName}</h4>
           <ul>
             {data.items.map((each) => (
               <li key={each.id}>{each.title}</li>

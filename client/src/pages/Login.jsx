@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { httpClient, getUser } from '../utils'
+import { authClient, getUser } from '../helpers'
 
 export function Login() {
   const [isLoading, setLoading] = useState(false)
@@ -14,7 +14,7 @@ export function Login() {
       const formData = new FormData(e.target)
       const formObject = Object.fromEntries(formData)
 
-      const tokens = await httpClient
+      const tokens = await authClient
         .post('/login', formObject)
         .then((r) => r.data)
 
