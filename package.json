@@ -1,0 +1,16 @@
+{
+  "name": "express-react-jwt-authentication",
+  "version": "1.0.0",
+  "description": "A simple JWT Authentication project using Express.js and React",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "prettier": "^2.8.6"
+  }
+}
