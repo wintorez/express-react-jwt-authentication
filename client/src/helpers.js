@@ -75,13 +75,13 @@ apiClient.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config
 
-    // NOTE: accessToken is missing or invalid. No point in refreshing the token.
+    // NOTE: accessToken is missing or invalid. No point in refreshing it.
     if (error.response?.status === StatusCodes.UNAUTHORIZED) {
       console.log('accessToken is missing!')
       logoutUser()
     }
 
-    // NOTE: accessToken is expired. We need to refresh the token.
+    // NOTE: accessToken is expired. We need to refresh it using the refresh token.
     if (
       error.response?.status === StatusCodes.FORBIDDEN &&
       !originalRequest._retry
