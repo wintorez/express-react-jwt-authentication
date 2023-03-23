@@ -45,7 +45,7 @@ export function Posts() {
 
               await authClient.post('/logout', { refreshToken })
             } catch (error) {
-              console.error(error)
+              // console.log(error)
             } finally {
               logoutUser()
             }

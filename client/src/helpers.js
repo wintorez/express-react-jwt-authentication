@@ -6,7 +6,6 @@ export function getToken(key) {
   try {
     return JSON.parse(sessionStorage.getItem('tokens'))[key]
   } catch (error) {
-    console.warn(error)
     return undefined
   }
 }
