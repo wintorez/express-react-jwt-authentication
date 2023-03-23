@@ -54,7 +54,7 @@ export function Posts() {
           </ul>
           <p>
             Last update:{' '}
-            <mark>{new Date(data.lastUpdate).toLocaleString()}</mark>
+            <mark>{new Date(data.lastUpdate).toLocaleTimeString()}</mark>
           </p>
         </>
       ) : (

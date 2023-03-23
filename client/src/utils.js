@@ -19,7 +19,7 @@ export function getUser() {
 
 async function refreshToken() {
   try {
-    const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000'
+    const baseURL = 'http://localhost:3000'
     const { refreshToken } = JSON.parse(sessionStorage.getItem('tokens'))
 
     const tokens = await axios
@@ -35,7 +35,7 @@ async function refreshToken() {
 }
 
 export const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000',
+  baseURL: 'http://localhost:3000',
 })
 
 httpClient.interceptors.request.use(

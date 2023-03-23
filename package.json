@@ -7,7 +7,8 @@
     "server"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\""
+    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\"",
+    "generate": "node -e \"console.log(require('crypto').randomBytes(64).toString('hex'))\""
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

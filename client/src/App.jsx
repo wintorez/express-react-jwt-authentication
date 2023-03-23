@@ -6,11 +6,12 @@ import {
   Navigate,
 } from 'react-router-dom'
 import { Posts, Login } from './pages'
+import { getUser } from './utils'
 
 const ProtectedRoute = () => {
-  const tokens = sessionStorage.getItem('tokens')
+  const user = getUser()
 
-  if (!tokens) {
+  if (!user) {
     return <Navigate to={'/login'} replace />
   }
 
