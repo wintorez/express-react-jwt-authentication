@@ -21,6 +21,15 @@ export function Posts() {
     console.log('accessToken expires every 10 seconds')
   }, [])
 
+  useEffect(() => {
+    if (data?.lastUpdate) {
+      console.log(
+        `Last update:`,
+        new Date(data.lastUpdate).toLocaleTimeString()
+      )
+    }
+  }, [data?.lastUpdate])
+
   return (
     <div>
       <aside>
